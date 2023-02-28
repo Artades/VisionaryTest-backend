@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.get('/', (req, res) => {
-    res.send(`<h1> Hello, my name is Visionary<h1/>`)
+    res.send(`<h1> Hello, my name is Visionary :)<h1/>`)
 });
 app.use(express.json());
 app.use(cors());
