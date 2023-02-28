@@ -50,7 +50,7 @@ app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 // Edit a task
-app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostController.update);
+// app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostController.update);
 
 
 
