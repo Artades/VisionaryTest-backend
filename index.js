@@ -5,6 +5,7 @@ import {registerValidation, loginValidation, postCreateValidation} from './valid
 import {UserController, PostController} from './controllers/index.js'
 import { handleValidationErrors, checkAuth } from './utils/index.js';
 import multer from "multer";
+import * as fs from "fs";
 
 
 
@@ -19,6 +20,9 @@ const app = express();
 
 const storage = multer.diskStorage({
     destination: ( _, __, cb) => {
+        if (!fs.existsSync('uploads')) {
+            fs.mkdirSync('uploads');
+        }
         cb(null, 'uploads');
     },
     filename: (_, file, cb) => {
@@ -29,7 +33,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.get('/', (req, res) => {
-    res.send(`<h1> Hello, this is Gallery<h1/>`)
+    res.send(`<h1> Hello, my name is Visionary<h1/>`)
 });
 app.use(express.json());
 app.use(cors());
