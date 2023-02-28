@@ -9,12 +9,12 @@ import multer from "multer";
 
 
 mongoose.connect(
-    'mongodb+srv://admin:wwwwww@cluster0.sjjvzfo.mongodb.net/?retryWrites=true&w=majority'
+    process.env.MONGODB_URI
 ).then(() => console.log('\x1b[32m%s\x1b[0m','DB is OK'))
     .catch((err) => console.log(`You have an error --- ${err}`))
 
 
-const PORT = 8888;
+
 const app = express();
 
 const storage = multer.diskStorage({
@@ -54,7 +54,7 @@ app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors,
 
 
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || 8888, (err) => {
     if (err) {
         return console.error(err)
     }
