@@ -38,16 +38,19 @@ app.get('/', (req, res) => {
 app.use(express.json());
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
+
+
+//Functions of registration and login;
+app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
+app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register);
+app.get('/auth/me', checkAuth, UserController.getMe);
 //Uploading function
 app.post('/upload',checkAuth , upload.single('image'), (req, res) => {
     res.json({
         url: `/uploads/${req.file.originalname}`
     });
 });
-//Functions of registration and login;
-app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
-app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register);
-app.get('/auth/me', checkAuth, UserController.getMe);
+
 // //Functions of posts;
 app.get('/posts', PostController.getAll);
 app.get('/posts/:id', PostController.getOne);
